@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltSerwis - Usługi Elektryczne</title>
+    <style>
+        :root {
+            --primary: #f1c40f; /* Elektryczna żółć */
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        header {
+            background: var(--dark);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Sekcja Kalkulatora */
+        #calc {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        button {
+            background: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .emergency {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            border: 2px dashed red;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>VoltSerwis - Inż. Jan Kowalski</h1>
+    <p>Uprawnienia SEP | Instalacje | Pomiary | Awarie 24/7</p>
+</header>
+
+<div class="container">
+    <div class="emergency">
+        AWARYJNE POGOTOWIE ELEKTRYCZNE: +48 123 456 789
+    </div>
+
+    <h2>Moje Usługi</h2>
+    <div class="service-list">
+        <div class="card">
+            <h3>Montaż</h3>
+            <p>Nowe instalacje w domach i mieszkaniach.</p>
+        </div>
+        <div class="card">
+            <h3>Pomiary</h3>
+            <p>Odbiory budynków i przeglądy pięcioletnie.</p>
+        </div>
+        <div class="card">
+            <h3>Smart Home</h3>
+            <p>Automatyka budynkowa i systemy alarmowe.</p>
+        </div>
+    </div>
+
+    
+
+    szubki kalkulator wyceny
+
+
+    <div id="calc">
+        <h3>Kalkulator Szybkiej Wyceny</h3>
+        <label>Liczba punktów elektrycznych (gniazdka/lampy):</label><br>
+        <input type="number" id="points" value="10" min="1" style="width: 100%; padding: 10px; margin: 10px 0;">
+        <p>Szacowany koszt robocizny: <strong id="result">0</strong> PLN</p>
+        <button onclick="calculateCost()">Oblicz cenę</button>
+        <p><small>*Wycena ma charakter orientacyjny.</small></p>
+    </div>
+</div>
+
+<script>
+    function calculateCost() {
+        // Pobieramy wartość z pola input
+        const points = document.getElementById('points').value;
+        const pricePerPoint = 60; // Stała cena za punkt
+        
+        // Logika obliczeń
+        if (points > 0) {
+            const total = points * pricePerPoint;
+            // Wyświetlenie wyniku w HTML
+            document.getElementById('result').innerText = total;
+            
+            // Efekt w konsoli
+            console.log("Obliczono wycenę dla " + points + " punktów.");
+        } else {
+            alert("Wpisz poprawną liczbę punktów!");
+        }
+    }
+
+    // Uruchomienie obliczeń na start
+    window.onload = calculateCost;
+</script>
+
+</body>
+</html>
